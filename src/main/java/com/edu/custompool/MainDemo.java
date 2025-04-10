@@ -18,7 +18,7 @@ public class MainDemo {
         );
 
         // Отправляем несколько задач в пул.
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 100; i++) {
             final int taskId = i;
             try {
                 executor.execute(new Runnable() {

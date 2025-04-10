@@ -10,12 +10,15 @@ public class PerformanceComparison {
         final int numberOfTasks = 1000;
         final int taskDuration = 100;
         final int queueSize = 1000;
+        final int corePoolSize = 2;
+        final int maxPoolSize = 4;
+        final int keepAliveTime = 5;
 
         // Создаем экземпляр кастомного пула с настройками: core=2, max=4, keepAlive=5с, очередь размером 50, minSpareThreads=1.
         CustomExecutor customExecutor = new CustomThreadPool(
-                2,
-                4,
-                5,
+                corePoolSize,
+                maxPoolSize,
+                keepAliveTime,
                 TimeUnit.SECONDS,
                 queueSize,
                 1,
@@ -24,9 +27,9 @@ public class PerformanceComparison {
 
         // Стандартный пул из ThreadPoolExecutor с аналогичными параметрами.
         ThreadPoolExecutor standardExecutor = new ThreadPoolExecutor(
-                2,
-                4,
-                5,
+                corePoolSize,
+                maxPoolSize,
+                keepAliveTime,
                 TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(queueSize),
                 new CustomThreadFactory("StandardPool", true)
